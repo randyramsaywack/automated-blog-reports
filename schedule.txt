@@ -1,0 +1,3 @@
+# Format for schedule text file with Example
+class_id.class_name.professor.days.time.room
+CST 4714.Database Administration.John Doe.Monday Wednesday.8:00AM - 9:40AM.Namm Hall N-918
