@@ -6,6 +6,10 @@ from darksky.api import DarkSky
 from darksky.types import weather
 from dotenv import load_dotenv
 import os
+import logging
+
+# Setup logging config
+logging.basicConfig(filename='post_log.log', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 # Load Environmental Variables from '.env' file
 load_dotenv()
@@ -33,18 +37,18 @@ token = jwt.encode(payload, bytes.fromhex(secret), algorithm='HS256', headers=he
 def create_post(class_name, time, room, summary, temp_high, temp_low):
     url = '{}/ghost/api/v3/admin/posts/?source=html'.format(os.getenv("GHOST_DOMAIN"))
     headers = {'Authorization': 'Ghost {}'.format(token.decode())}
-    post = 'Class: {}<br/>Time: {}<br/>Room: {}<br/>Weather: {}<br/>Temp High: {}\u2109<br/>Temp Low: {} \u2109'.format(class_name, time, room, summary, temp_high, temp_low)
+    post = 'Class: {}<br/>Time: {}<br/>Room: {}<br/>Weather: {}<br/>Temp High: {} \u2109<br/>Temp Low: {} \u2109'.format(class_name, time, room, summary, temp_high, temp_low)
     now = datetime.now()
     convert_to_day = now.strftime('%m/%d/%Y %I:%M %p')
-    title = class_name + ' on ' + convert_to_day
+    title = 'You have ' + class_name + ' today.'
     body = {"posts": [{"title": "", "status": "published", "html": ""}]}
     body["posts"][0]["html"] = post
     body["posts"][0]["title"] = title
     r = requests.post(url, json=body, headers=headers)
     if str(r) == '<Response [201]>':
-      print(now.strftime("%m/%d/%Y %H:%M:%S - ") + "Successfully created post!")
+      logging.info("Successfully created post!")
     else:
-      print(now.strftime("%m/%d/%Y %H:%M:%S - ") + "Failed creating post with error " + str(r))
+      logging.info("Failed with error " + str(r))
 
 # Location using Lat/Long
 DARKSKY_API_KEY = os.getenv("DARK_SKY_API")

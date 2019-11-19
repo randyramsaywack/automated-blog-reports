@@ -3,8 +3,7 @@
 import csv
 import fnmatch
 from datetime import datetime
-from ghost import get_weather
-from ghost import create_post
+from ghost import *
 from dotenv import load_dotenv
 import os
 
@@ -25,6 +24,6 @@ def check_schedule():
         readCSV = csv.reader(schedule, delimiter='.')
         for row in readCSV:
             if fnmatch.fnmatch(row[3], weekday_wildcard):
-                create_post(row[1], row[4], row[5], summary, temp_high, temp_high)
+                create_post(row[1], row[4], row[5], summary, temp_high, temp_low)
 
 check_schedule()
