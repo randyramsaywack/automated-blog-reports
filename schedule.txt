@@ -1,3 +1,6 @@
-# Format for schedule text file with Example
 class_id.class_name.professor.days.time.room
-CST 4714.Database Administration.John Doe.Monday Wednesday.8:00AM - 9:40AM.Namm Hall N-918
+CST 610.Network Security Fundamentals.Doe, John.Tuesday.6:00PM - 9:20PM.B-806
+CST 709.Internet Info Server.Patterson, Dave.Monday Wednesday.12:00PM - 1:40PM.C-819
+CST 714.Database Administration.Beverly, Stephen.Monday Wednesday.4:00PM - 5:40PM.N-420
+CST 523.Task Automation.Cox, Ben.Thursday.6:00PM - 9:20PM.N-901
+CST 700.IT Service Management.Thayer, Dennis.Wednesday.6:00PM - 9:20PM.N-805
