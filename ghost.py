@@ -38,8 +38,6 @@ def create_post(class_name, time, room, summary, temp_high, temp_low):
     url = '{}/ghost/api/v3/admin/posts/?source=html'.format(os.getenv("GHOST_DOMAIN"))
     headers = {'Authorization': 'Ghost {}'.format(token.decode())}
     post = 'Class: {}<br/>Time: {}<br/>Room: {}<br/>Weather: {}<br/>Temp High: {} \u2109<br/>Temp Low: {} \u2109'.format(class_name, time, room, summary, temp_high, temp_low)
-    now = datetime.now()
-    convert_to_day = now.strftime('%m/%d/%Y %I:%M %p')
     title = 'You have ' + class_name + ' today.'
     body = {"posts": [{"title": "", "status": "published", "html": ""}]}
     body["posts"][0]["html"] = post
